@@ -1,1 +1,13 @@
 @charset "UTF-8";
+/* JMS — 共通スタイル */
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: 'BIZ UDPGothic', 'Noto Sans JP', system-ui, sans-serif;
+  color: #1B2030;
+  -webkit-font-smoothing: antialiased;
+}
