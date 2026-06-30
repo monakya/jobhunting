@@ -8,9 +8,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/screen.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/screens/15-login.css">
 <title>JMS — ログイン</title>
-<link rel="stylesheet" href="../css/base.css">
-<link rel="stylesheet" href="../css/screen.css">
-<link rel="stylesheet" href="./15-login.css">
 </head>
 <body>
 <div class="page-label">JMS / ログイン</div>
