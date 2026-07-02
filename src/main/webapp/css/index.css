@@ -1,53 +1,63 @@
 @charset "UTF-8";
+
 /* JMS — 画面一覧 */
-html, body { background: #F4F1EA; }
-body { padding: 60px 80px 120px; }
+
+body {
+    padding: 60px 80px 120px;
+}
+
 h1 {
-  font: 700 28px/1.2 'BIZ UDPGothic', system-ui;
-  margin: 0 0 8px;
-  letter-spacing: .02em;
+    font: 700 28px/1.2 "BIZ UDPGothic", system-ui;
+    margin: 0 0 8px;
+    letter-spacing: .02em;
 }
+
 .sub {
-  font: 400 14px/1.6 'Noto Sans JP', system-ui;
-  color: #4B5263;
-  margin-bottom: 36px;
-  max-width: 780px;
+    max-width: 780px;
+    margin-bottom: 36px;
+    font: 400 14px/1.6 "Noto Sans JP", system-ui;
+    color: #4B5263;
 }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 14px;
-  max-width: 1400px;
-}
-a.card {
-  display: block;
-  background: #FFF;
-  border: 1px solid #E2DED2;
-  border-radius: 4px;
-  padding: 18px 20px;
-  text-decoration: none;
-  color: #1B2030;
-  box-shadow: 0 1px 3px rgba(20, 25, 45, .05);
-  transition: transform .12s ease, box-shadow .12s ease;
-}
-a.card:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(20, 25, 45, .10);
-  border-color: #C7C0AF;
-}
-.idx {
-  font: 500 10px/1 'JetBrains Mono', monospace;
-  color: #7B8294;
-  letter-spacing: .12em;
-}
-.ttl {
-  margin-top: 8px;
-  font: 700 15px/1.4 'BIZ UDPGothic', system-ui;
-}
+
 .grp {
-  font: 700 12px/1 'BIZ UDPGothic', system-ui;
-  color: #7B8294;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  margin: 32px 0 12px;
+    margin: 32px 0 12px;
+    font: 700 12px/1 "BIZ UDPGothic", system-ui;
+    color: #7B8294;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+    max-width: 1400px;
+}
+
+.card {
+    display: block;
+    padding: 18px 20px;
+    background: #fff;
+    border: 1px solid #E2DED2;
+    border-radius: 4px;
+    color: #1B2030;
+    box-shadow: 0 1px 3px rgba(20, 25, 45, .05);
+    transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+}
+
+.card:hover {
+    transform: translateY(-1px);
+    border-color: #C7C0AF;
+    box-shadow: 0 4px 14px rgba(20, 25, 45, .10);
+}
+
+.idx {
+    font: 500 10px/1 "JetBrains Mono", monospace;
+    color: #7B8294;
+    letter-spacing: .12em;
+}
+
+.ttl {
+    margin-top: 8px;
+    font: 700 15px/1.4 "BIZ UDPGothic", system-ui;
 }
