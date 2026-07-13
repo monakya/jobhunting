@@ -54,6 +54,7 @@ public class ReportServlet extends HttpServlet {
         }
         req.setAttribute("pageTitle", "活動状況報告");
         req.setAttribute("activeNav", "report");
+        req.setAttribute("pageCss", "report");
         req.getRequestDispatcher("/WEB-INF/jsp/report/report.jsp").forward(req, res);
     }
 }

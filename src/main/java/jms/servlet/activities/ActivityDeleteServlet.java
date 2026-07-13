@@ -41,6 +41,7 @@ public class ActivityDeleteServlet extends HttpServlet {
         }
         req.setAttribute("pageTitle", "就職活動削除");
         req.setAttribute("activeNav", "activities");
+        req.setAttribute("pageCss", "activities");
         req.getRequestDispatcher("/WEB-INF/jsp/activities/delete.jsp").forward(req, res);
     }
 

@@ -108,6 +108,7 @@ public class ActivityFormServlet extends HttpServlet {
             req.setAttribute("mode", "register");
             req.setAttribute("pageTitle", "就職活動登録");
             req.setAttribute("activeNav", "activities");
+            req.setAttribute("pageCss", "activities");
             req.getRequestDispatcher("/WEB-INF/jsp/activities/form.jsp").forward(req, res);
             return;
         }

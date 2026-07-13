@@ -42,6 +42,7 @@ public class StudentListServlet extends HttpServlet {
         req.setAttribute("q", q == null ? "" : q);
         req.setAttribute("pageTitle", "学生一覧");
         req.setAttribute("activeNav", "students");
+        req.setAttribute("pageCss", "student");
         req.getRequestDispatcher("/WEB-INF/jsp/students/list.jsp").forward(req, res);
     }
 

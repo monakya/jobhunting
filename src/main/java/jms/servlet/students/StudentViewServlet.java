@@ -44,6 +44,7 @@ public class StudentViewServlet extends HttpServlet {
         }
         req.setAttribute("pageTitle", "学生閲覧");
         req.setAttribute("activeNav", "students");
+        req.setAttribute("pageCss", "student");
         req.getRequestDispatcher("/WEB-INF/jsp/students/view.jsp").forward(req, res);
     }
 }

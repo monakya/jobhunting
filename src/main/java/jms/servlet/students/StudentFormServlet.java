@@ -14,7 +14,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jms.dao.LookupDao;
 import jms.dao.StudentDao;
 import jms.model.Account;
-import jms.model.MasterItem;
 import jms.model.Student;
 import jms.service.StudentService;
 
@@ -81,6 +80,7 @@ public class StudentFormServlet extends HttpServlet {
             req.setAttribute("mode", edit ? "edit" : "register");
             req.setAttribute("pageTitle", edit ? "学生変更" : "学生登録");
             req.setAttribute("activeNav", "students");
+            req.setAttribute("pageCss", "student");
             req.getRequestDispatcher("/WEB-INF/jsp/students/form.jsp").forward(req, res);
             return;
         }

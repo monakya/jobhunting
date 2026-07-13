@@ -40,6 +40,7 @@ public class ActivityListServlet extends HttpServlet {
         req.setAttribute("q", q == null ? "" : q);
         req.setAttribute("pageTitle", "就職活動一覧");
         req.setAttribute("activeNav", "activities");
+        req.setAttribute("pageCss", "activities");
         req.getRequestDispatcher("/WEB-INF/jsp/activities/list.jsp").forward(req, res);
     }
 

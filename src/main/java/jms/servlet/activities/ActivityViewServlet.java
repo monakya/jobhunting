@@ -37,6 +37,7 @@ public class ActivityViewServlet extends HttpServlet {
         }
         req.setAttribute("pageTitle", "就職活動閲覧");
         req.setAttribute("activeNav", "activities");
+        req.setAttribute("pageCss", "activities");
         req.getRequestDispatcher("/WEB-INF/jsp/activities/view.jsp").forward(req, res);
     }
 

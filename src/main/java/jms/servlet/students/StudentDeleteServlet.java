@@ -32,6 +32,7 @@ public class StudentDeleteServlet extends HttpServlet {
         req.setAttribute("s", s);
         req.setAttribute("pageTitle", "学生削除");
         req.setAttribute("activeNav", "students");
+        req.setAttribute("pageCss", "student");
         req.getRequestDispatcher("/WEB-INF/jsp/students/delete.jsp").forward(req, res);
     }
 
