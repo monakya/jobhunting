@@ -1,0 +1,22 @@
+<%--
+  管理画面共通のタブバー。
+  前提の request 属性: activeTab = "accounts" / "industries" / "jobtypes" / "regions"
+--%>
+<%@ page pageEncoding="UTF-8" %>
+<div class="admin-tabs">
+  <a href="${pageContext.request.contextPath}/app/admin/accounts"
+     class="${activeTab == 'accounts' ? 'active' : ''}">アカウント</a>
+  <a href="${pageContext.request.contextPath}/app/admin/industries"
+     class="${activeTab == 'industries' ? 'active' : ''}">業種マスタ</a>
+  <a href="${pageContext.request.contextPath}/app/admin/jobtypes"
+     class="${activeTab == 'jobtypes' ? 'active' : ''}">職種マスタ</a>
+  <a href="${pageContext.request.contextPath}/app/admin/regions"
+     class="${activeTab == 'regions' ? 'active' : ''}">地域マスタ</a>
+</div>
+
+<%-- PRG 後のメッセージ表示（?msg= / ?err=） --%>
+<c:if test="${param.msg == 'added'}"><div class="msg-info">登録しました。</div></c:if>
+<c:if test="${param.msg == 'deleted'}"><div class="msg-info">削除しました。</div></c:if>
+<c:if test="${param.err == 'empty'}"><div class="msg-error">名称を入力してください。</div></c:if>
+<c:if test="${param.err == 'dup'}"><div class="msg-error">同じ名称が既に登録されています。</div></c:if>
+<c:if test="${param.err == 'inuse'}"><div class="msg-error">使用中のため削除できません。関連データを先に変更してください。</div></c:if>

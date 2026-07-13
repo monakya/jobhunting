@@ -1,0 +1,57 @@
+<%--
+  共通ヘッダ。各 JSP の先頭で include する。
+  前提の request 属性:
+    pageTitle  … <title> とページ見出し
+    activeNav  … "students" / "companies" / "activities" / "report" / "admin" のいずれか
+  セッション属性:
+    account (jms.model.Account) … AuthFilter 通過後は必ず存在
+--%>
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JMS — <c:out value="${pageTitle}"/></title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/app.css?v=7d">
+</head>
+<body>
+<div class="app-topbar">
+  <div class="brand">JMS</div>
+  <div class="brand-sub">Job Hunting Management System</div>
+  <div class="spacer"></div>
+  <nav>
+    <c:if test="${sessionScope.account.canViewStudents}">
+      <a href="${pageContext.request.contextPath}/app/students/list"
+         class="${activeNav == 'students' ? 'active' : ''}">学生</a>
+    </c:if>
+    <c:if test="${sessionScope.account.canViewCompanies}">
+      <a href="${pageContext.request.contextPath}/app/companies/list"
+         class="${activeNav == 'companies' ? 'active' : ''}">企業</a>
+    </c:if>
+    <c:if test="${sessionScope.account.canViewActivities}">
+      <a href="${pageContext.request.contextPath}/app/activities/list"
+         class="${activeNav == 'activities' ? 'active' : ''}">就職活動</a>
+    </c:if>
+    <c:if test="${sessionScope.account.canViewReport}">
+      <a href="${pageContext.request.contextPath}/app/report"
+         class="${activeNav == 'report' ? 'active' : ''}">活動状況報告</a>
+    </c:if>
+    <c:if test="${sessionScope.account.admin}">
+      <a href="${pageContext.request.contextPath}/app/admin/accounts"
+         class="${activeNav == 'admin' ? 'active' : ''}">管理</a>
+    </c:if>
+  </nav>
+  <div class="spacer"></div>
+  <div class="who">
+    <span class="who-name">
+      <c:out value="${sessionScope.account.roleName}"/>
+      <c:out value="${sessionScope.account.displayName}"/>
+    </span>
+    <div class="avatar"><c:out value="${fn:substring(sessionScope.account.displayName, 0, 1)}"/></div>
+    <a class="logout" href="${pageContext.request.contextPath}/logout">ログアウト</a>
+  </div>
+</div>
+<div class="app-main">
