@@ -1,0 +1,148 @@
+/* =====================================================================
+   components.css — 再利用部品の層
+   カード / テーブル / フィルタバー / チップ / KPI / フォーム / ボタン / メッセージ
+   「2つ以上の機能で使う部品」を置く。特定画面専用のものは css/pages/ へ
+   ===================================================================== */
+
+/* ---- カード ---- */
+.card {
+  background: var(--card); border: 1px solid var(--line-soft); border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(20,25,45,.05); padding: 20px 24px; margin-bottom: 16px;
+}
+.section-title {
+  font: 700 13px/1.3 var(--font-head); color: var(--ink);
+  letter-spacing: .02em; margin: 0 0 12px;
+}
+
+/* ---- テーブル ---- */
+table.list { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.list th {
+  text-align: left; font: 500 11px/1.4 var(--font-body); color: var(--muted);
+  letter-spacing: .06em; border-bottom: 1px solid var(--line-soft);
+  padding: 8px 10px; white-space: nowrap;
+}
+table.list td {
+  border-bottom: 1px solid var(--row-line);
+  padding: 12px 10px; vertical-align: top;
+}
+table.list tr:hover td { background: #FBF9F3; }
+
+/* 集計テーブル用（活動状況報告など） */
+table.list td.num, table.list th.num { text-align: right; }
+td.num { font: 500 13px/1.4 var(--font-mono); }
+tr.row-subtotal td { background: #FBF9F3; font-weight: 700; }
+tr.row-total td { border-top: 2px solid var(--line); font-weight: 700; }
+
+/* ---- フィルタバー（一覧画面共通） ---- */
+.filter-bar {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+.filter-bar .spacer { flex: 1; }
+.filter-bar input[type=text] { width: 220px; }
+
+/* ---- チップ / バッジ（デザイン原本はピル型） ---- */
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  border-radius: 99px; padding: 4px 10px;
+  font: 700 12px/1 var(--font-head); white-space: nowrap;
+  background: var(--tint-neutral); color: var(--sub);
+}
+.chip-stage    { background: var(--tint-navy);  color: var(--navy); }
+.chip-offer    { background: var(--tint-green); color: var(--accept); }
+.chip-deadline { background: var(--deadline);   color: #fff; }
+.chip-fail     { background: var(--tint-red);   color: var(--danger); }
+.chip-final    { background: var(--navy);       color: #fff; }
+
+/* ---- KPI カード（活動状況報告・メニューのサマリー） ---- */
+.kpi-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px; margin-bottom: 16px;
+}
+.kpi {
+  background: var(--card); border: 1px solid var(--line-soft);
+  border-radius: 4px; padding: 18px 20px;
+}
+.kpi-label {
+  font: 700 11px/1 var(--font-head); letter-spacing: .08em; color: var(--sub);
+}
+.kpi-value {
+  margin-top: 12px; display: flex; align-items: baseline; gap: 8px;
+  font: 500 36px/1 var(--font-mono); color: var(--ink);
+}
+.kpi-value .kpi-unit { font: 500 13px/1 var(--font-body); color: var(--muted); }
+.kpi-sub { margin-top: 10px; font: 500 11px/1.5 var(--font-body); color: var(--muted); }
+.kpi-sub b { font-weight: 700; }
+
+.kpi-green .kpi-value { color: var(--accept); }
+.kpi-amber { border-color: var(--tint-amber); }
+.kpi-amber .kpi-label, .kpi-amber .kpi-value { color: var(--deadline); }
+
+/* コンパクト版（メニューのサマリーストリップ等） */
+.kpi-sm { padding: 12px 14px; }
+.kpi-sm .kpi-label { font: 500 11px/1 var(--font-body); color: var(--muted); letter-spacing: 0; }
+.kpi-sm .kpi-value { margin-top: 6px; font-size: 22px; }
+
+/* 内定率ヒーロー（墨背景・白文字・大きなモノスペース数字） */
+.kpi-hero { background: var(--ink); color: #fff; border: none; }
+.kpi-hero .kpi-label { color: #fff; opacity: .7; }
+.kpi-hero .kpi-value { color: #fff; font-size: 52px; }
+.kpi-hero .kpi-value .kpi-unit { color: #fff; opacity: .6; font: 500 18px/1 var(--font-head); }
+.kpi-hero .kpi-sub { color: #fff; opacity: .75; }
+
+/* 進捗バー */
+.bar {
+  height: 6px; background: rgba(27,32,48,.12); border-radius: 3px;
+  overflow: hidden; margin-top: 10px;
+}
+.bar > i { display: block; height: 100%; background: var(--green-soft); }
+.kpi-hero .bar { background: rgba(255,255,255,.15); }
+
+/* ---- フォーム ---- */
+.form-row { display: flex; gap: 16px; margin-bottom: 14px; align-items: flex-start; }
+.form-row label { width: 140px; font: 700 12px/2.6 var(--font-head); flex: none; }
+.form-row .req::after { content: " *"; color: var(--danger); }
+input[type=text], input[type=date], input[type=datetime-local], input[type=number],
+input[type=password], input[type=email], select, textarea {
+  font: 400 13px/1.6 var(--font-body); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 3px; padding: 7px 10px;
+  background: #fff; box-sizing: border-box;
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--navy); outline-offset: -1px; }
+input:disabled, select:disabled, textarea:disabled { background: #EFEDE6; color: var(--muted); }
+.field-hint { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+/* フォーム下部のボタン列（登録・変更画面共通） */
+.form-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 8px; }
+
+/* ---- 閲覧画面の共通骨格（学生・企業の view で共用） ---- */
+.view-actions { display: flex; gap: 8px; align-items: center; margin-bottom: 16px; }
+.view-actions .spacer { flex: 1; }
+
+.view-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+@media (max-width: 980px) { .view-grid { grid-template-columns: 1fr; } }
+
+.remarks-box {
+  background: #FBF9F3; border: 1px solid var(--line-soft); border-radius: 3px;
+  padding: 10px 12px; font-size: 13px; white-space: pre-wrap; min-height: 40px;
+}
+
+/* ---- ボタン（プライマリ＝紺） ---- */
+.btn {
+  display: inline-block; border-radius: 3px; border: 1px solid var(--navy);
+  padding: 9px 16px; font: 700 12px/1 var(--font-head);
+  background: var(--navy); color: #fff; cursor: pointer; text-decoration: none;
+}
+.btn:hover { opacity: .9; }
+.btn-secondary { background: #fff; color: var(--ink); border-color: var(--line); }
+.btn-danger { background: var(--danger); border-color: var(--danger); color: #fff; }
+
+/* ---- メッセージ ---- */
+.msg-error {
+  background: var(--tint-red); border: 1px solid var(--danger); color: var(--danger);
+  border-radius: 3px; padding: 10px 14px; font-size: 13px; margin-bottom: 16px;
+}
+.msg-info {
+  background: var(--tint-navy); border: 1px solid var(--navy); color: var(--navy);
+  border-radius: 3px; padding: 10px 14px; font-size: 13px; margin-bottom: 16px;
+}

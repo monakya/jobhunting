@@ -44,6 +44,7 @@ public class AdminRegionsServlet extends HttpServlet {
         req.setAttribute("pageTitle", "地域マスタ");
         req.setAttribute("activeNav", "admin");
         req.setAttribute("activeTab", "regions");
+        req.setAttribute("pageCss", "admin");
         req.getRequestDispatcher("/WEB-INF/jsp/admin/regions.jsp").forward(req, res);
     }
 

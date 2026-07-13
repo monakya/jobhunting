@@ -32,6 +32,7 @@ public class AdminJobTypesServlet extends HttpServlet {
         req.setAttribute("pageTitle", "職種マスタ");
         req.setAttribute("activeNav", "admin");
         req.setAttribute("activeTab", "jobtypes");
+        req.setAttribute("pageCss", "admin");
         req.getRequestDispatcher("/WEB-INF/jsp/admin/jobtypes.jsp").forward(req, res);
     }
 

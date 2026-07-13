@@ -29,6 +29,7 @@ public class AdminIndustriesServlet extends HttpServlet {
         req.setAttribute("pageTitle", "業種マスタ");
         req.setAttribute("activeNav", "admin");
         req.setAttribute("activeTab", "industries");
+        req.setAttribute("pageCss", "admin");
         req.getRequestDispatcher("/WEB-INF/jsp/admin/industries.jsp").forward(req, res);
     }
 

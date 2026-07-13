@@ -1,0 +1,8 @@
+/* =====================================================================
+   pages/company.css — 企業管理（10-13）専用
+   募集職種（recruitment）行の表示・編集スタイル
+   ===================================================================== */
+.rec-line { font-size: 12px; line-height: 1.6; white-space: nowrap; }
+.rec-row { border: 1px dashed var(--line); border-radius: 4px; padding: 10px 12px; margin-bottom: 10px; }
+.rec-row-head { display: flex; gap: 10px; align-items: baseline; margin-bottom: 6px; }
+.rec-row-no { font: 700 11px/1 var(--font-head); color: var(--navy); }

@@ -1,0 +1,47 @@
+/* =====================================================================
+   base.css — 土台の層
+   フォント読み込み / CSS変数（デザイントークン） / html・body / 汎用ユーティリティ
+   全画面で必ず最初に読み込むこと（変数定義がここにあるため）
+   ===================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* パレット（デザイン原本の Design System 準拠） */
+  --paper:    #F4F1EA;   /* 紙（ページ背景） */
+  --card:     #FFFFFF;   /* カード */
+  --ink:      #1B2030;   /* 墨 */
+  --navy:     #2C4A7A;   /* 紺（プライマリ） */
+  --accept:   #2F6E4F;   /* 承諾・内定 */
+  --deadline: #B07025;   /* 期限・注意 */
+  --danger:   #A04B3C;   /* 危険・不合格・辞退 */
+  --muted:    #7B8294;   /* 補足テキスト */
+  --sub:      #4B5263;   /* 第二テキスト */
+  --kana:     #9CA3B1;   /* ふりがな等の淡い文字 */
+  --line:     #C7C0AF;   /* 枠線（強） */
+  --line-soft:#E2DED2;   /* 枠線（弱・カード） */
+  --row-line: #EFECE3;   /* テーブル行の罫線 */
+
+  /* チップの淡色背景 */
+  --tint-navy:  #E8EDF5;
+  --tint-green: #E3EFE7;
+  --tint-amber: #F5EBD7;
+  --tint-red:   #F2E2DD;
+  --tint-neutral:#EEEAE0;
+
+  --green-soft: #7CB394; /* 進捗バー */
+
+  --font-head: 'BIZ UDPGothic', system-ui, sans-serif;
+  --font-body: 'Noto Sans JP', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 14px/1.7 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- 汎用ユーティリティ ---- */
+.mono { font-family: var(--font-mono); font-size: 12px; }

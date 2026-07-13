@@ -31,6 +31,7 @@ public class CompanyViewServlet extends HttpServlet {
         }
         req.setAttribute("pageTitle", "企業閲覧");
         req.setAttribute("activeNav", "companies");
+        req.setAttribute("pageCss", "company");
         req.getRequestDispatcher("/WEB-INF/jsp/companies/view.jsp").forward(req, res);
     }
 

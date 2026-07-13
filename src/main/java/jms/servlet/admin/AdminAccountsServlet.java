@@ -28,6 +28,7 @@ public class AdminAccountsServlet extends HttpServlet {
         req.setAttribute("pageTitle", "アカウント");
         req.setAttribute("activeNav", "admin");
         req.setAttribute("activeTab", "accounts");
+        req.setAttribute("pageCss", "admin");
         req.getRequestDispatcher("/WEB-INF/jsp/admin/accounts.jsp").forward(req, res);
     }
 }

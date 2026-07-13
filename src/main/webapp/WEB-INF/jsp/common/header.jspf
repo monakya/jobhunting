@@ -15,7 +15,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>JMS — <c:out value="${pageTitle}"/></title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/app.css?v=7d">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/components.css">
+<c:if test="${not empty pageCss}">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/css/pages/${pageCss}.css">
+</c:if>
 </head>
 <body>
 <div class="app-topbar">

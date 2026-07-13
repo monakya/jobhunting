@@ -35,6 +35,7 @@ public class CompanyDeleteServlet extends HttpServlet {
         }
         req.setAttribute("pageTitle", "企業削除");
         req.setAttribute("activeNav", "companies");
+        req.setAttribute("pageCss", "company");
         req.getRequestDispatcher("/WEB-INF/jsp/companies/delete.jsp").forward(req, res);
     }
 

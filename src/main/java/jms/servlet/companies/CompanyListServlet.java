@@ -42,6 +42,7 @@ public class CompanyListServlet extends HttpServlet {
         req.setAttribute("q", q == null ? "" : q);
         req.setAttribute("pageTitle", "企業一覧");
         req.setAttribute("activeNav", "companies");
+        req.setAttribute("pageCss", "company");
         req.getRequestDispatcher("/WEB-INF/jsp/companies/list.jsp").forward(req, res);
     }
 

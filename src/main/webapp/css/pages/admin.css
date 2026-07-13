@@ -1,0 +1,29 @@
+/* =====================================================================
+   pages/admin.css — 管理画面（19-21）専用
+   タブ / マスタ追加フォーム / 地域マスタの2ペインレイアウト
+   ===================================================================== */
+.admin-tabs { display: flex; gap: 4px; margin-bottom: 16px; border-bottom: 2px solid var(--ink); }
+.admin-tabs a {
+  padding: 8px 16px; font: 700 12px/1 var(--font-head);
+  color: var(--muted); text-decoration: none; border-radius: 3px 3px 0 0;
+}
+.admin-tabs a.active { background: var(--ink); color: #fff; }
+.admin-tabs a:not(.active):hover { background: #E9E5DA; color: var(--ink); }
+
+.master-add-form { display: flex; gap: 8px; margin-bottom: 16px; align-items: center; }
+.master-add-form input[type=text] { flex: 1; max-width: 320px; }
+
+.pill-static {
+  display: inline-block; padding: 2px 8px; border-radius: 99px;
+  background: var(--tint-navy); color: var(--navy); font: 500 11px/1.5 var(--font-body);
+}
+
+.region-layout { display: grid; grid-template-columns: 260px 1fr; gap: 16px; align-items: start; }
+.pref-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 10px; border-radius: 3px; text-decoration: none;
+  color: var(--ink); font: 500 13px/1.4 var(--font-body);
+}
+.pref-row:hover { background: #F3F0E8; }
+.pref-row.active { background: var(--ink); color: #fff; }
+.pref-row .mono { font-size: 11px; opacity: .7; }

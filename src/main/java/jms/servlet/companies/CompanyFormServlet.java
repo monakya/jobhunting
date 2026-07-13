@@ -61,6 +61,7 @@ public class CompanyFormServlet extends HttpServlet {
         req.setAttribute("mode", edit ? "edit" : "register");
         req.setAttribute("pageTitle", edit ? "企業変更" : "企業登録");
         req.setAttribute("activeNav", "companies");
+        req.setAttribute("pageCss", "company");
         req.getRequestDispatcher("/WEB-INF/jsp/companies/form.jsp").forward(req, res);
     }
 
