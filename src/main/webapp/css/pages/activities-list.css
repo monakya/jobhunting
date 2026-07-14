@@ -1,0 +1,347 @@
+/* ===========================
+   全体レイアウト
+   =========================== */
+.va-page {
+  background:#F4F1EA;
+  border:1px solid #C7C0AF;
+  border-radius:4px;
+  box-shadow:0 2px 14px rgba(20,25,45,.08);
+  padding-bottom:40px;
+  overflow:hidden;
+}
+
+/* ===========================
+   トップバー
+   =========================== */
+.va-topbar {
+  display:flex;
+  align-items:center;
+  height:48px;
+  background:#1B2030;
+  color:#E2DED2;
+  padding:0 20px;
+}
+
+.va-topbar-title {
+  font:700 13px 'BIZ UDPGothic';
+  letter-spacing:.08em;
+}
+
+.va-topbar-sub {
+  margin-left:18px;
+  opacity:.55;
+  font:500 12px 'Noto Sans JP';
+}
+
+.va-topbar-menu {
+  display:flex;
+  gap:18px;
+  font:500 12px 'Noto Sans JP';
+  opacity:.85;
+  margin-left:40px;
+}
+
+.va-topbar-menu .active {
+  color:#fff;
+  border-bottom:2px solid #fff;
+  padding-bottom:14px;
+  margin-bottom:-14px;
+}
+
+.va-topbar-user {
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.va-user-icon {
+  width:28px;
+  height:28px;
+  border-radius:99px;
+  background:#2C4A7A;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font:700 12px 'BIZ UDPGothic';
+}
+
+/* ===========================
+   ページヘッダー
+   =========================== */
+.va-page-header {
+  padding:22px 28px 18px 28px;
+  border-bottom:1px solid #E2DED2;
+  display:flex;
+  align-items:flex-end;
+  gap:16px;
+}
+
+.va-page-label {
+  font:500 11px 'Noto Sans JP';
+  color:#7B8294;
+  letter-spacing:.08em;
+}
+
+.va-page-title {
+  margin-top:6px;
+  font:700 22px 'BIZ UDPGothic';
+  color:#1B2030;
+}
+
+.va-header-buttons {
+  margin-left:auto;
+  display:flex;
+  gap:8px;
+}
+
+/* ===========================
+   ボタン
+   =========================== */
+.va-btn-outline {
+  height:36px;
+  padding:0 14px;
+  border:1px solid #C7C0AF;
+  background:#fff;
+  color:#1B2030;
+  border-radius:3px;
+  font:700 12px 'BIZ UDPGothic';
+}
+
+.va-btn-primary {
+  height:36px;
+  padding:0 16px;
+  background:#2C4A7A;
+  color:#fff;
+  border-radius:3px;
+  font:700 12px 'BIZ UDPGothic';
+  text-decoration:none;
+}
+
+/* ===========================
+   KPI
+   =========================== */
+.va-kpi-strip {
+  margin-top:18px;
+  display:grid;
+  grid-template-columns:repeat(6, 1fr);
+  gap:12px;
+  padding:0 28px;
+}
+
+.va-kpi-box {
+  border:1px solid #E2DED2;
+  border-radius:3px;
+  padding:12px 14px;
+  background:#fff;
+}
+
+.va-kpi-label {
+  font:500 11px 'Noto Sans JP';
+  color:#7B8294;
+}
+
+.va-kpi-value {
+  margin-top:6px;
+  font:500 22px 'JetBrains Mono';
+  color:#1B2030;
+}
+
+.va-kpi-value span {
+  font-size:12px;
+  color:#7B8294;
+  margin-left:4px;
+}
+
+.va-warn {
+  border-color:#F5EBD7;
+  background:#FCF6E8;
+}
+
+.va-warn .va-kpi-label,
+.va-warn .va-kpi-value {
+  color:#B07025;
+}
+
+/* ===========================
+   フィルタ表示
+   =========================== */
+.va-filter-display {
+  margin-top:16px;
+  padding:0 28px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.va-filter-chip {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  height:34px;
+  padding:0 12px;
+  border:1px solid #C7C0AF;
+  background:#fff;
+  border-radius:3px;
+}
+
+.va-filter-chip span {
+  font:500 11px 'Noto Sans JP';
+  color:#7B8294;
+}
+
+.va-filter-chip strong {
+  font:700 12px 'BIZ UDPGothic';
+  color:#1B2030;
+}
+
+.va-filter-search {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  height:34px;
+  padding:0 12px;
+  border:1px solid #C7C0AF;
+  background:#fff;
+  border-radius:3px;
+  min-width:260px;
+}
+
+.va-icon {
+  color:#7B8294;
+}
+
+.va-placeholder {
+  font:400 12px 'Noto Sans JP';
+  color:#9CA3B1;
+}
+
+/* ===========================
+   テーブルヘッダー
+   =========================== */
+.va-table-header {
+  display:grid;
+  grid-template-columns:32px 56px 88px 110px 1fr 78px 78px 130px 130px 110px 110px 110px 64px;
+  align-items:center;
+  gap:0;
+  padding:10px 28px;
+  background:#EFEBE0;
+  border-bottom:1px solid #E2DED2;
+  font:700 11px 'BIZ UDPGothic';
+  color:#4B5263;
+  letter-spacing:.04em;
+}
+
+/* ===========================
+   テーブル行
+   =========================== */
+.va-table-body .va-row {
+  display:grid;
+  grid-template-columns:32px 56px 88px 110px 1fr 78px 78px 130px 130px 110px 110px 110px 64px;
+  align-items:center;
+  gap:0;
+  padding:12px 28px;
+  border-bottom:1px solid #EFECE3;
+  background:#fff;
+  cursor:pointer;
+}
+
+.va-row:nth-child(even) {
+  background:#FBF9F3;
+}
+
+.va-row:hover {
+  background:#F7F4EC;
+}
+
+/* ===========================
+   セル
+   =========================== */
+.va-cell {
+  font:500 12px 'Noto Sans JP';
+  color:#1B2030;
+}
+
+.va-cell.mono {
+  font-family:'JetBrains Mono', monospace;
+}
+
+.va-name {
+  font:700 13px 'BIZ UDPGothic';
+}
+
+.va-name-sub {
+  font:500 10px 'Noto Sans JP';
+  color:#9CA3B1;
+  margin-top:2px;
+}
+
+.va-company {
+  font:700 13px 'BIZ UDPGothic';
+}
+
+.va-company-sub {
+  font:400 10px 'Noto Sans JP';
+  color:#9CA3B1;
+  margin-top:2px;
+}
+
+/* ===========================
+   チップ
+   =========================== */
+.va-chip {
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:4px 9px;
+  border-radius:99px;
+  font:700 11px 'BIZ UDPGothic';
+}
+
+.va-chip-ref {
+  background:#EEEAE0;
+  color:#4B5263;
+}
+
+.va-chip-stage {
+  background:#E8EDF5;
+  color:#2C4A7A;
+}
+
+.va-chip-offer {
+  background:#E3EFE7;
+  color:#2F6E4F;
+}
+
+.va-chip-fail {
+  background:#F2E2DD;
+  color:#A04B3C;
+}
+
+.va-chip-neutral {
+  background:#EEEAE0;
+  color:#7B8294;
+}
+
+.va-chip-deadline {
+  background:#F5EBD7;
+  color:#B07025;
+}
+
+.va-dot {
+  width:6px;
+  height:6px;
+  border-radius:99px;
+  background:currentColor;
+}
+
+/* ===========================
+   メニュー
+   =========================== */
+.va-cell.menu {
+  text-align:right;
+  color:#7B8294;
+  font-size:18px;
+}

@@ -1,0 +1,147 @@
+/* =====================================================================
+   pages/activities-view.css — 画面07「就職活動 閲覧（学生 × 選考タイムライン）」専用
+   design_references/dist/screens/07-job-activity-view.html のインライン
+   style を、そのままの色/寸法でクラス化したもの。
+   前提: base.css / layout.css / components.css を先に読み込むこと。
+   ===================================================================== */
+
+/* ---- ページヘッダー行（パンくず + 削除/編集/＋受験を追加 ボタン） ---- */
+.actv-header {
+  padding: 18px 28px; border-bottom: 1px solid var(--line-soft);
+  display: flex; align-items: center; gap: 14px;
+  margin: -20px -24px 20px; /* .card の内側パディングを打ち消して画面いっぱいに */
+}
+.actv-header .crumb { font: 500 11px/1.4 var(--font-body); color: var(--muted); }
+.actv-header .crumb .current { color: var(--ink); font-weight: 700; }
+.actv-header .spacer { flex: 1; }
+
+/* ---- 2カラム: 左=学生プロフィール（300px幅） / 右=タイムライン ---- */
+.actv-grid { display: grid; grid-template-columns: 300px 1fr; gap: 0; }
+@media (max-width: 980px) { .actv-grid { grid-template-columns: 1fr; } }
+
+/* --- 左: プロフィールパネル --- */
+.actv-profile {
+  padding: 24px; background: #FBF9F3;
+  border-right: 1px solid var(--line-soft);
+}
+@media (max-width: 980px) { .actv-profile { border-right: none; border-bottom: 1px solid var(--line-soft); } }
+
+.actv-profile-head { display: flex; align-items: center; gap: 14px; }
+.actv-avatar {
+  width: 56px; height: 56px; border-radius: 99px; flex: none;
+  background: var(--tint-amber); color: var(--deadline);
+  display: flex; align-items: center; justify-content: center;
+  font: 700 22px/1 var(--font-head);
+}
+.actv-profile-name { font: 700 18px/1.2 var(--font-head); color: var(--ink); }
+.actv-profile-kana { margin-top: 3px; font: 500 11px/1 var(--font-body); color: var(--muted); }
+
+.actv-fact-box {
+  margin-top: 20px; padding: 14px; background: #fff;
+  border: 1px solid var(--line-soft); border-radius: 3px;
+}
+.actv-fact-grid {
+  display: grid; grid-template-columns: 80px 1fr; gap: 10px 14px;
+  font: 500 12px/1.5 var(--font-body);
+}
+.actv-fact-grid dt { color: var(--muted); margin: 0; }
+.actv-fact-grid dd { margin: 0; color: var(--ink); font-weight: 700; }
+.actv-fact-grid dd.mono { font-family: var(--font-mono); font-weight: 400; }
+.actv-fact-grid dd.enrolled { color: var(--accept); }
+.actv-fact-grid dd.enrolled::before { content: "● "; }
+
+.actv-deadline-alert {
+  margin-top: 14px; padding: 12px 14px; background: #FCF6E8;
+  border: 1px solid var(--tint-amber); border-radius: 3px;
+}
+.actv-deadline-alert .headline { font: 700 12px/1 var(--font-head); color: var(--deadline); }
+.actv-deadline-alert .detail { margin-top: 6px; font: 500 11px/1.5 var(--font-body); color: var(--sub); }
+
+.actv-section-label {
+  margin-top: 18px; font: 700 11px/1 var(--font-head); color: var(--muted); letter-spacing: .08em;
+}
+
+.actv-summary { margin-top: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.actv-summary .cell { padding: 10px; background: #fff; border: 1px solid var(--line-soft); border-radius: 3px; }
+.actv-summary .cell-label { font: 500 10px/1 var(--font-body); color: var(--muted); }
+.actv-summary .cell-value { margin-top: 4px; font: 500 18px/1 var(--font-mono); color: var(--ink); }
+.actv-summary .cell-value.green { color: var(--accept); }
+.actv-summary .cell-value.navy  { color: var(--navy); }
+.actv-summary .cell-value.red   { color: var(--danger); }
+
+.actv-remarks {
+  margin-top: 8px; padding: 12px; background: #fff; border: 1px solid var(--line-soft);
+  border-radius: 3px; font: 400 12px/1.6 var(--font-body); color: var(--sub); white-space: pre-wrap;
+}
+
+/* --- 右: タイムラインパネル --- */
+.actv-timeline { padding: 24px 28px; }
+
+.actv-timeline-head { display: flex; align-items: center; gap: 12px; }
+.actv-timeline-head h2 { margin: 0; font: 700 14px/1 var(--font-head); color: var(--ink); }
+.actv-timeline-head .spacer { flex: 1; }
+.actv-view-toggle { display: flex; gap: 6px; }
+.actv-view-toggle .opt {
+  padding: 5px 10px; border: 1px solid var(--line); background: #fff; color: var(--muted);
+  border-radius: 3px; font: 700 10px/1 var(--font-head); cursor: pointer;
+}
+.actv-view-toggle .opt.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+/* 企業カード（進行中・強調＝承諾期限接近） */
+.actv-company {
+  margin-top: 18px; background: #fff; border: 1px solid var(--line-soft);
+  border-radius: 4px; overflow: hidden;
+}
+.actv-company:first-of-type { margin-top: 18px; }
+.actv-company.urgent { border-color: var(--deadline); }
+
+.actv-company-head {
+  padding: 14px 18px; display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--row-line);
+}
+.actv-company.urgent .actv-company-head { background: #FCF6E8; border-bottom-color: var(--tint-amber); }
+.actv-company-name { font: 700 14px/1.2 var(--font-head); color: var(--ink); }
+.actv-company-meta { margin-top: 3px; font: 500 10px/1 var(--font-body); color: var(--muted); }
+.actv-company-head .spacer { flex: 1; }
+
+/* 選考ステップ表（企業カード内） */
+.actv-steps { padding: 14px 18px; }
+.actv-steps-cols { grid-template-columns: 140px 100px 1fr 80px 110px; }
+.actv-step-header {
+  display: grid; gap: 10px; padding: 8px 0;
+  border-bottom: 1px solid var(--row-line);
+  font: 500 11px/1.3 var(--font-head); color: var(--muted);
+}
+.actv-step {
+  display: grid; gap: 10px; padding: 10px 0; align-items: center;
+  border-top: 1px solid var(--row-line);
+}
+.actv-step:first-of-type { border-top: none; }
+.actv-step .step-date { font: 500 12px/1.3 var(--font-mono); color: var(--ink); }
+.actv-step .step-note { font: 500 12px/1.3 var(--font-body); color: var(--sub); }
+.actv-step .step-empty { font: 500 12px/1 var(--font-mono); color: var(--kana); }
+.actv-step .step-result-pass { font: 700 12px/1 var(--font-head); color: var(--accept); }
+.actv-step .step-result-date { font: 500 12px/1 var(--font-mono); color: var(--sub); }
+.actv-step .final-tag { margin-left: 6px; font: 700 10px/1 var(--font-head); color: var(--deadline); }
+
+/* 承諾期限の行（企業カード内の最終行。承諾/辞退ボタン付き） */
+.actv-step.deadline-row {
+  background: #FCF6E8; margin: 0 -18px; padding-left: 18px; padding-right: 18px;
+}
+.actv-step.deadline-row .step-date { color: var(--deadline); font-weight: 700; }
+.actv-step.deadline-row .step-note { color: var(--deadline); }
+.actv-step.deadline-row .step-actions { display: flex; gap: 4px; justify-content: flex-end; }
+.actv-step.deadline-row .btn { height: 26px; padding: 0 8px; font: 700 10px/1 var(--font-head); }
+
+/* 進行中カード（企業2: ステップを→でつないだ1行サマリー） */
+.actv-progress-line { padding: 10px 18px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.actv-progress-line .arrow { font: 500 11px/1.3 var(--font-body); color: var(--sub); }
+.actv-progress-line .spacer { flex: 1; }
+.actv-progress-line .btn { height: 26px; padding: 0 10px; font: 700 10px/1 var(--font-head); }
+
+/* 折りたたみ済みカード（不合格・1行のみ） */
+.actv-company.collapsed { margin-top: 10px; }
+.actv-company.collapsed .actv-company-head { border-bottom: none; padding: 12px 18px; }
+.actv-company.collapsed .actv-company-name { font: 700 13px/1.2 var(--font-head); color: var(--muted); }
+.actv-company.collapsed .actv-company-meta { color: var(--kana); }
+.actv-company.collapsed .result-date { font: 500 11px/1 var(--font-mono); color: var(--kana); }
