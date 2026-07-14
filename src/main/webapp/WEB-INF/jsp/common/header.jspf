@@ -24,8 +24,10 @@
 </head>
 <body>
 <div class="app-topbar">
-  <div class="brand">JMS</div>
-  <div class="brand-sub">Job Hunting Management System</div>
+<a href="${pageContext.request.contextPath}/app/menu" class="brand-link">
+  <span class="brand">JMS</span>
+  <span class="brand-sub">Job Hunting Management System</span>
+</a>
   <div class="spacer"></div>
   <nav>
     <c:if test="${sessionScope.account.canViewStudents}">

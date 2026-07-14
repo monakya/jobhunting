@@ -1,0 +1,117 @@
+/* =====================================================================
+   pages/menu.css — メインメニュー（画面16）専用 フェーズ7D
+   ウェルカム帯 / KPIバナー / メニュータイル
+   共有部品（.chip 等）は components.css を使い、ここでは上書きのみ行う
+   ===================================================================== */
+
+/* ---- ウェルカム帯 ---- */
+.menu-welcome { padding: 6px 0 20px; border-bottom: 1px solid var(--line-soft); margin-bottom: 20px; }
+.menu-hello {
+  font: 500 11px/1 var(--font-body); color: var(--muted); letter-spacing: .08em;
+}
+.menu-name {
+  margin-top: 6px; font: 700 24px/1.2 var(--font-head); color: var(--ink);
+}
+.menu-name-sub {
+  margin-left: 8px; font: 500 13px/1 var(--font-body); color: var(--muted);
+}
+
+/* ---- KPI バナー（墨背景・4セル） ---- */
+.menu-kpi {
+  background: var(--ink); color: #fff; border-radius: 4px;
+  padding: 18px 22px; margin-bottom: 22px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+}
+.mk-cell {
+  color: inherit; text-decoration: none; display: block;
+  border-radius: 4px; margin: -8px -10px; padding: 8px 10px;
+}
+.mk-cell:hover { background: rgba(255,255,255,.08); }
+.mk-cell:hover .mk-label::after { content: " ›"; opacity: .6; }
+
+.mk-label { font: 700 11px/1 var(--font-head); letter-spacing: .08em; opacity: .7; }
+
+/* 数字と内訳の並び:
+   広い画面 … 数字の右横に内訳を「縦積み」
+   狭い画面 … 数字の下に内訳を「横並び」（下の @media で切替） */
+.mk-flex { margin-top: 8px; display: flex; align-items: flex-end; gap: 14px; }
+
+.mk-num { font: 500 28px/1 var(--font-mono); white-space: nowrap; }
+.mk-num .mk-unit { font: 500 11px/1 var(--font-body); opacity: .6; margin-left: 4px; }
+
+.mk-break {
+  display: flex; flex-direction: column; gap: 3px;
+  padding-bottom: 2px; font: 500 10px/1.3 var(--font-body); opacity: .55;
+  white-space: nowrap;
+}
+
+/* 承諾期限セル（琥珀の警告色） */
+.mk-amber .mk-label, .mk-amber .mk-num, .mk-amber .mk-num .mk-unit { color: var(--tint-amber); opacity: 1; }
+.mk-amber .mk-break { opacity: .8; color: var(--tint-amber); }
+
+/* 内定率セル: 「20 /40名 (50.0%)」— 内定者数だけ大きく */
+.mk-ratio { display: flex; align-items: baseline; gap: 4px; white-space: nowrap; }
+.mk-ratio-big { font: 500 28px/1 var(--font-mono); color: #7CB394; }
+.mk-ratio-small { font: 500 13px/1 var(--font-mono); opacity: .65; }
+.mk-ratio-pct { font: 500 13px/1 var(--font-mono); color: #7CB394; opacity: .9; margin-left: 2px; }
+
+/* 幅が狭いとき: 内訳を数字の下に横並びへ。バナー自体も2列に */
+@media (max-width: 1100px) {
+  .menu-kpi { grid-template-columns: repeat(2, 1fr); }
+  .mk-flex { display: block; }
+  .mk-break { flex-direction: row; gap: 10px; margin-top: 6px; }
+}
+@media (max-width: 640px) {
+  .menu-kpi { grid-template-columns: 1fr; }
+}
+
+/* ---- メニュータイル ---- */
+.menu-section-label {
+  font: 700 11px/1 var(--font-head); color: var(--muted); letter-spacing: .1em;
+  margin-bottom: 12px;
+}
+.menu-tiles {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
+}
+@media (max-width: 1100px) { .menu-tiles { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 720px)  { .menu-tiles { grid-template-columns: 1fr; } }
+
+.tile {
+  background: var(--card); border: 1px solid var(--line-soft); border-radius: 6px;
+  padding: 22px 20px; display: block; text-decoration: none; color: inherit;
+}
+.tile:hover { box-shadow: 0 2px 10px rgba(20,25,45,.10); }
+
+.tile-head { display: flex; align-items: center; gap: 12px; }
+.tile-icon {
+  width: 36px; height: 36px; border-radius: 4px; flex: none;
+  background: var(--tint-navy); color: var(--navy);
+  display: flex; align-items: center; justify-content: center;
+  font: 700 18px/1 var(--font-head);
+}
+.tile-icon-green   { background: var(--tint-green);   color: var(--accept); }
+.tile-icon-neutral { background: var(--tint-neutral); color: var(--sub); }
+.tile-titles { flex: 1; min-width: 0; }
+.tile-title { font: 700 14px/1.2 var(--font-head); color: var(--ink); }
+.tile-en { margin-top: 3px; font: 500 10px/1 var(--font-body); color: var(--muted); }
+.tile-arrow { font: 700 18px/1 var(--font-head); color: #9CA3B1; }
+
+.tile-desc { margin: 12px 0 0; font: 500 12px/1.5 var(--font-body); color: var(--sub); }
+.tile-chips { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; }
+.tile-chips .chip { font-size: 10px; padding: 3px 8px; border: 1px solid var(--line-soft); }
+.tile-chips .chip-stage { border-color: transparent; }
+.tile-chips .chip-offer { border-color: transparent; }
+.tile-chips .chip-deadline { border-color: transparent; }
+.chip-muted { background: #FBF9F3; color: var(--muted); }
+
+/* 就職活動タイル（墨背景の強調版） */
+.tile-dark { background: var(--ink); border-color: var(--ink); color: #fff; }
+.tile-dark .tile-title { color: #fff; }
+.tile-dark .tile-en { color: rgba(255,255,255,.6); }
+.tile-dark .tile-desc { color: rgba(255,255,255,.85); }
+.tile-dark .tile-arrow { color: rgba(255,255,255,.5); }
+.tile-dark .tile-icon { background: rgba(255,255,255,.15); color: #fff; }
+.tile-dark .tile-chips .chip {
+  background: rgba(255,255,255,.15); color: #fff; border-color: transparent;
+}
+.tile-dark .tile-chips .chip-deadline { background: var(--deadline); }

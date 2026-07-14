@@ -8,6 +8,7 @@
     <div class="va-topbar-title">JMS</div>
     <div class="va-topbar-sub">Job Hunting Management System</div>
 
+<<<<<<< HEAD
     <div class="va-topbar-menu">
       <span>学生</span>
       <span>企業</span>
@@ -15,6 +16,47 @@
       <span>活動状況報告</span>
       <span>管理</span>
     </div>
+=======
+<%-- フェーズ7E: メニューKPIからの遷移フィルタが有効な場合の表示 --%>
+<c:if test="${not empty eventDateLabel or deadlineWithin > 0}">
+  <div class="msg-info">
+    <c:if test="${not empty eventDateLabel}">
+      「<c:out value="${eventDateLabel}"/>」がある応募だけを表示しています。
+    </c:if>
+    <c:if test="${deadlineWithin > 0}">
+      承諾期限が ${deadlineWithin} 日以内で未回答の応募だけを表示しています（期限超過を含む）。
+    </c:if>
+    <a href="${pageContext.request.contextPath}/app/activities/list">絞り込みを解除</a>
+  </div>
+</c:if>
+
+<div class="card">
+  <form method="get" action="${pageContext.request.contextPath}/app/activities/list" class="filter-bar">
+    <%-- KPIフィルタ有効中に検索しても絞り込みが外れないよう hidden で引き継ぐ --%>
+    <c:if test="${not empty eventDateParam}">
+      <input type="hidden" name="eventDate" value="<c:out value='${eventDateParam}'/>">
+    </c:if>
+    <c:if test="${deadlineWithin > 0}">
+      <input type="hidden" name="deadlineWithin" value="${deadlineWithin}">
+    </c:if>
+    <select name="stageId">
+      <option value="0">選考状況：すべて</option>
+      <c:forEach var="s" items="${stages}">
+        <option value="${s.id}" ${stageId == s.id ? 'selected' : ''}><c:out value="${s.name}"/></option>
+      </c:forEach>
+    </select>
+    <select name="resultId">
+      <option value="0">結果：すべて</option>
+      <c:forEach var="r" items="${results}">
+        <option value="${r.id}" ${resultId == r.id ? 'selected' : ''}><c:out value="${r.name}"/></option>
+      </c:forEach>
+    </select>
+    <input type="text" name="q" value="<c:out value='${q}'/>" placeholder="学生氏名・かな・企業名 部分一致">
+    <button type="submit" class="btn btn-secondary">検索</button>
+    <span class="spacer"></span>
+    <a class="btn" href="${pageContext.request.contextPath}/app/activities/register">＋ 応募を登録</a>
+  </form>
+>>>>>>> branch 'master' of https://github.com/monakya/jobhunting
 
     <div class="va-topbar-user">
       <span>${className} 担任</span>
