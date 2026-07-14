@@ -33,3 +33,24 @@ h1.page-title { font: 700 22px/1.2 var(--font-head); margin: 0 0 4px; }
   font: 500 11px/1 var(--font-body); color: var(--muted);
   letter-spacing: .08em; margin-bottom: 18px;
 }
+/* ---- トップバーのロゴリンク ----
+   見た目は従来のまま。リンクの青字・下線・訪問済み色をすべて打ち消す */
+.app-topbar .brand-link {
+  display: flex; align-items: baseline;   /* brand と brand-sub を横並びのまま維持 */
+  color: inherit;                          /* 親（topbar）の #E2DED2 を引き継ぐ */
+  text-decoration: none;
+}
+.app-topbar .brand-link:visited { color: inherit; }
+.app-topbar .brand-link:hover .brand-sub { opacity: .8; }  /* ホバー時だけ副題を少し明るく（任意） */
+
+/* ---- 各画面左下の「← メニュー」 ----
+   文字だけに見えるプレーンなリンク */
+.back-to-menu {
+  display: inline-block;
+  margin-top: 28px;
+  font: 500 12px/1 var(--font-body);
+  color: var(--muted);
+  text-decoration: none;
+}
+.back-to-menu:visited { color: var(--muted); }
+.back-to-menu:hover   { color: var(--ink); }

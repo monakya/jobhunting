@@ -31,7 +31,7 @@ public class MenuServlet extends HttpServlet {
             throw new ServletException(e);
         }
         req.setAttribute("pageTitle", "メインメニュー");
-        req.setAttribute("activeNav", "");
+        req.setAttribute("activeNav", "menu");
         req.getRequestDispatcher("/WEB-INF/jsp/menu.jsp").forward(req, res);
     }
 }
