@@ -50,9 +50,14 @@ tr.row-total td { border-top: 2px solid var(--line); font-weight: 700; }
 }
 .chip-stage    { background: var(--tint-navy);  color: var(--navy); }
 .chip-offer    { background: var(--tint-green); color: var(--accept); }
-.chip-deadline { background: var(--deadline);   color: #fff; }
+.chip-accepted { background: var(--accept);      color: #fff; }              /* 内定承諾（塗り） */
+.chip-deadline-soft { background: var(--tint-amber); color: var(--deadline); } /* 承諾期限（通常表示） */
+.chip-deadline { background: var(--deadline);   color: #fff; }               /* 承諾期限（3日以内の警告） */
 .chip-fail     { background: var(--tint-red);   color: var(--danger); }
 .chip-final    { background: var(--navy);       color: #fff; }
+
+/* チップ内のドット（説明会・書類選考・面接系など、ドット付き表示用） */
+.chip .dot { width: 6px; height: 6px; border-radius: 99px; background: currentColor; flex: none; }
 
 /* ---- KPI カード（活動状況報告・メニューのサマリー） ---- */
 .kpi-grid {

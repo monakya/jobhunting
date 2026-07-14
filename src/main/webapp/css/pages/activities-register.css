@@ -1,0 +1,173 @@
+/* =====================================================================
+   pages/activities-register.css — 画面08「就職活動 登録」専用
+   design_references/dist/screens/08-job-activity-register.html のインライン
+   style を、そのままの色/寸法でクラス化したもの。
+   画面09（削除確認モーダル）・変更（マスターキャンバス差分）にも流用可。
+   前提: base.css / layout.css / components.css を先に読み込むこと。
+   ===================================================================== */
+
+/* モーダル風カード（デザインは max-width 760px・影付きで中央寄せ） */
+.actf-modal {
+  max-width: 760px; margin: 0 auto;
+  background: #fff; border: 1px solid var(--line); border-radius: 6px;
+  box-shadow: 0 8px 32px rgba(20,25,45,.18); overflow: hidden;
+}
+
+.actf-header {
+  padding: 18px 22px; border-bottom: 1px solid var(--line-soft);
+  display: flex; align-items: center; gap: 12px;
+}
+.actf-header .eyebrow { font: 500 11px/1 var(--font-body); color: var(--muted); letter-spacing: .08em; }
+.actf-header .title { margin-top: 4px; font: 700 18px/1.2 var(--font-head); color: var(--ink); }
+.actf-header .spacer { flex: 1; }
+.actf-header .close { font: 500 18px/1 var(--font-head); color: var(--kana); cursor: pointer; }
+
+.actf-body { padding: 22px; }
+
+/* ---- 学生ピッカー（選択済みカード表示） ---- */
+.actf-field-label {
+  font: 700 12px/1 var(--font-head); color: var(--ink);
+}
+.actf-field-label .req { color: var(--danger); margin-left: 6px; }
+
+.actf-entity-picker {
+  margin-top: 8px; padding: 10px 14px; border: 1px solid var(--line-soft);
+  border-radius: 3px; background: #FBF9F3;
+  display: flex; align-items: center; gap: 10px;
+}
+.actf-entity-picker .avatar {
+  width: 30px; height: 30px; border-radius: 99px; flex: none;
+  background: var(--tint-amber); color: var(--deadline);
+  display: flex; align-items: center; justify-content: center; font: 700 12px/1 var(--font-head);
+}
+.actf-entity-picker .name { font: 700 13px/1.2 var(--font-head); color: var(--ink); }
+.actf-entity-picker .sub  { margin-top: 2px; font: 500 10px/1 var(--font-mono); color: var(--muted); }
+.actf-entity-picker .spacer { flex: 1; }
+.actf-entity-picker .change {
+  font: 500 11px/1 var(--font-body); color: var(--navy); cursor: pointer;
+  background: none; border: none; padding: 0;
+}
+
+/* ---- 企業インクリメンタルサーチ ---- */
+.actf-company-field { margin-top: 18px; position: relative; }
+.actf-search-box {
+  display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 12px;
+  border: 1px solid var(--line); border-radius: 3px; background: #fff;
+}
+.actf-search-box:focus-within { border-color: var(--navy); }
+.actf-search-box .icon { color: var(--muted); }
+.actf-search-box input[type=text] {
+  border: none; padding: 0; height: auto; flex: 1;
+  font: 500 13px/1 var(--font-body); color: var(--ink);
+}
+.actf-search-box input[type=text]:focus { outline: none; }
+.actf-search-box .match-highlight { background: var(--tint-navy); padding: 0 2px; border-radius: 2px; }
+
+.actf-search-dropdown {
+  position: absolute; top: 42px; left: 0; right: 0; z-index: 5;
+  background: #fff; border: 1px solid var(--line); border-radius: 3px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.12); overflow: hidden;
+}
+.actf-search-item { padding: 8px 12px; border-top: 1px solid var(--row-line); cursor: pointer; }
+.actf-search-item:first-child { border-top: none; }
+.actf-search-item:hover, .actf-search-item.active { background: var(--tint-navy); }
+.actf-search-item .name { font: 700 12px/1.3 var(--font-head); color: var(--ink); }
+.actf-search-item .meta { margin-top: 3px; font: 400 10px/1 var(--font-body); color: var(--muted); }
+.actf-search-new {
+  padding: 8px 12px; border-top: 1px solid var(--row-line); background: #FBF9F3;
+  font: 500 11px/1.3 var(--font-body); color: var(--navy); cursor: pointer;
+}
+.actf-hint { margin-top: 6px; font: 400 10px/1.3 var(--font-body); color: var(--muted); }
+
+/* ---- 2列グリッド（紹介区分・選考状況 / 日時・場所・最終かどうかは3列） ---- */
+.actf-grid-2 { margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.actf-grid-3 { margin-top: 14px; display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .actf-grid-2, .actf-grid-3 { grid-template-columns: 1fr; } }
+
+/* セグメンテッドコントロール（紹介区分・最終かどうか） */
+.actf-segmented {
+  margin-top: 8px; display: flex; gap: 4px;
+  border: 1px solid var(--line); border-radius: 3px; padding: 3px; background: #FBF9F3;
+}
+.actf-segmented input[type=radio] { display: none; }
+.actf-segmented label {
+  flex: 1; padding: 7px; text-align: center; border-radius: 2px; cursor: pointer;
+  font: 700 11px/1 var(--font-head); color: var(--muted);
+}
+.actf-segmented input[type=radio]:checked + label { background: var(--ink); color: #fff; }
+
+/* 選考状況セレクタ（選択中の値をチップ表示） */
+.actf-stage-select {
+  margin-top: 8px; display: flex; align-items: center; height: 36px; padding: 0 12px;
+  border: 1px solid var(--line); border-radius: 3px; cursor: pointer;
+}
+.actf-stage-select .spacer { flex: 1; }
+.actf-stage-select .caret { color: var(--muted); }
+
+/* 日時入力（アイコン + 日付 + 区切り + 時刻） */
+.actf-datetime {
+  margin-top: 8px; display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px;
+  border: 1px solid var(--line); border-radius: 3px;
+}
+.actf-datetime .icon { color: var(--muted); }
+.actf-datetime .sep  { color: var(--kana); }
+.actf-datetime .date, .actf-datetime .time {
+  font: 500 13px/1 var(--font-mono); color: var(--ink);
+  border: none; padding: 0; height: auto; background: transparent;
+}
+
+/* 場所（テキスト入力風の枠のみのdiv、あるいは通常input） */
+.actf-place {
+  margin-top: 8px; display: flex; align-items: center; height: 36px; padding: 0 12px;
+  border: 1px solid var(--line); border-radius: 3px;
+  font: 500 13px/1 var(--font-body); color: var(--ink);
+}
+
+/* ---- 結果セクション（点線区切り） ---- */
+.actf-divider { margin-top: 18px; padding-top: 18px; border-top: 1px dashed var(--line-soft); }
+.actf-sub-label { font: 500 11px/1 var(--font-body); color: var(--muted); }
+
+.actf-result-grid { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+@media (max-width: 640px) { .actf-result-grid { grid-template-columns: 1fr; } }
+
+/* 結果ピッカー（通過／内定／不合格／未判明） */
+.actf-result-picker { margin-top: 6px; display: flex; gap: 4px; flex-wrap: wrap; }
+.actf-result-picker input[type=radio] { display: none; }
+.actf-result-picker label {
+  padding: 6px 10px; border-radius: 3px; border: 1px solid var(--line-soft);
+  font: 700 11px/1 var(--font-head); color: var(--muted); background: #FBF9F3; cursor: pointer;
+}
+.actf-result-picker input[value="pass"]:checked + label {
+  background: var(--tint-green); border-color: var(--tint-green); color: var(--accept);
+}
+.actf-result-picker input[value="offer"]:checked + label {
+  background: var(--tint-green); border-color: var(--tint-green); color: var(--accept);
+}
+.actf-result-picker input[value="fail"]:checked + label {
+  background: var(--tint-red); border-color: var(--tint-red); color: var(--danger);
+}
+.actf-result-picker input[value="pending"]:checked + label {
+  background: var(--tint-neutral); border-color: var(--tint-neutral); color: var(--sub);
+}
+
+.actf-date-placeholder {
+  margin-top: 6px; display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px;
+  border: 1px solid var(--line); border-radius: 3px;
+  font: 500 12px/1 var(--font-mono); color: var(--kana);
+}
+
+/* ---- 備考 ---- */
+.actf-remarks-field { margin-top: 18px; }
+.actf-remarks-box {
+  margin-top: 8px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 3px;
+  min-height: 64px; font: 400 12px/1.6 var(--font-body); color: var(--ink); resize: vertical; width: 100%; box-sizing: border-box;
+}
+.actf-remarks-box::placeholder { color: var(--kana); }
+
+/* ---- フッター（保存条件ヒント + キャンセル/登録ボタン） ---- */
+.actf-footer {
+  padding: 14px 22px; border-top: 1px solid var(--line-soft); background: #FBF9F3;
+  display: flex; align-items: center; gap: 8px;
+}
+.actf-footer .hint { font: 500 11px/1.3 var(--font-body); color: var(--muted); }
+.actf-footer .spacer { flex: 1; }

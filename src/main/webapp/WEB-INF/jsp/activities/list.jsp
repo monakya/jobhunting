@@ -1,12 +1,22 @@
 <%@ page pageEncoding="UTF-8" %>
-<%-- 就職活動 一覧（画面06）。担任は自クラスのみ（サーブレットの scopeClassId で制限済み） --%>
 <%@ include file="/WEB-INF/jsp/common/header.jspf" %>
 
-<h1 class="page-title">就職活動一覧</h1>
-<div class="page-breadcrumb">JMS / 就職活動</div>
+<div class="va-page">
 
-<c:if test="${param.msg == 'deleted'}"><div class="msg-info">削除しました。</div></c:if>
+  <!-- 上部ナビ -->
+  <div class="va-topbar">
+    <div class="va-topbar-title">JMS</div>
+    <div class="va-topbar-sub">Job Hunting Management System</div>
 
+<<<<<<< HEAD
+    <div class="va-topbar-menu">
+      <span>学生</span>
+      <span>企業</span>
+      <span class="active">就職活動</span>
+      <span>活動状況報告</span>
+      <span>管理</span>
+    </div>
+=======
 <%-- フェーズ7E: メニューKPIからの遷移フィルタが有効な場合の表示 --%>
 <c:if test="${not empty eventDateLabel or deadlineWithin > 0}">
   <div class="msg-info">
@@ -46,66 +56,156 @@
     <span class="spacer"></span>
     <a class="btn" href="${pageContext.request.contextPath}/app/activities/register">＋ 応募を登録</a>
   </form>
+>>>>>>> branch 'master' of https://github.com/monakya/jobhunting
 
-  <table class="list">
-    <tr>
-      <th>学生 / クラス</th><th>企業（業種・紹介）</th><th>応募職種</th>
-      <th>現在の選考状況</th><th>結果</th><th>承諾期限</th><th>状態</th>
-    </tr>
+    <div class="va-topbar-user">
+      <span>${className} 担任</span>
+      <div class="va-user-icon">${userInitial}</div>
+    </div>
+  </div>
+
+  <!-- ページヘッダー -->
+  <div class="va-page-header">
+    <div>
+      <div class="va-page-label">就職活動管理</div>
+      <div class="va-page-title">就職活動 一覧</div>
+    </div>
+
+    <div class="va-header-buttons">
+      <button class="va-btn-outline">出力</button>
+      <button class="va-btn-outline">列のカスタマイズ</button>
+      <a href="${pageContext.request.contextPath}/app/activities/register" class="va-btn-primary">＋ 受験情報を追加</a>
+    </div>
+  </div>
+
+  <!-- KPI -->
+  <div class="va-kpi-strip">
+    <div class="va-kpi-box">
+      <div class="va-kpi-label">在籍中</div>
+      <div class="va-kpi-value">${kpi.enrolled}<span>名</span></div>
+    </div>
+    <div class="va-kpi-box">
+      <div class="va-kpi-label">活動中</div>
+      <div class="va-kpi-value">${kpi.active}<span>名</span></div>
+    </div>
+    <div class="va-kpi-box">
+      <div class="va-kpi-label">内定</div>
+      <div class="va-kpi-value">${kpi.offers}<span>名</span></div>
+    </div>
+    <div class="va-kpi-box">
+      <div class="va-kpi-label">内定承諾</div>
+      <div class="va-kpi-value">${kpi.accepted}<span>名</span></div>
+    </div>
+    <div class="va-kpi-box">
+      <div class="va-kpi-label">未活動</div>
+      <div class="va-kpi-value">${kpi.inactive}<span>名</span></div>
+    </div>
+    <div class="va-kpi-box va-warn">
+      <div class="va-kpi-label">承諾期限7日以内</div>
+      <div class="va-kpi-value">${kpi.deadlineSoon}<span>名</span></div>
+    </div>
+  </div>
+
+  <!-- フィルタ表示 -->
+  <div class="va-filter-display">
+    <div class="va-filter-chip"><span>クラス</span><strong>${className}</strong></div>
+    <div class="va-filter-chip"><span>在籍</span><strong>${statusName}</strong></div>
+    <div class="va-filter-chip"><span>紹介区分</span><strong>${referralTypeName}</strong></div>
+    <div class="va-filter-chip"><span>選考状況</span><strong>${stageName}</strong></div>
+    <div class="va-filter-chip"><span>期間</span><strong>${from} — ${to}</strong></div>
+
+    <div class="va-filter-search">
+      <span class="va-icon">⌕</span>
+      <span class="va-placeholder">学生・企業名で検索</span>
+    </div>
+  </div>
+
+  <!-- テーブルヘッダー -->
+  <div class="va-table-header">
+    <div></div>
+    <div>クラス</div>
+    <div>学籍</div>
+    <div>氏名</div>
+    <div>企業名</div>
+    <div>業種</div>
+    <div>紹介</div>
+    <div>選考状況</div>
+    <div>次回日時 / 場所</div>
+    <div>結果</div>
+    <div>結果判明日</div>
+    <div>承諾期限</div>
+    <div></div>
+  </div>
+
+  <!-- テーブル本体 -->
+  <div class="va-table-body">
+
     <c:forEach var="a" items="${applications}">
-      <tr onclick="location.href='${pageContext.request.contextPath}/app/activities/view?id=${a.applicationId}'"
-          style="cursor:pointer;">
-        <td>
-          <c:out value="${a.studentName}"/>
-          <div class="mono" style="font-size:11px; color:#888;"><c:out value="${a.className}"/></div>
-        </td>
-        <td>
-          <c:out value="${a.companyName}"/>
-          <div style="font-size:11px; color:#888;">
-            <c:out value="${a.industryName}"/> ・ <c:out value="${a.referralTypeName}"/>
-          </div>
-        </td>
-        <td><c:out value="${a.jobTypeName}"/></td>
-        <td>
+      <div class="va-row" onclick="location.href='${pageContext.request.contextPath}/app/activities/view?id=${a.applicationId}'">
+
+        <div class="va-cell cb"></div>
+
+        <div class="va-cell mono">${a.className}</div>
+
+        <div class="va-cell mono">${a.studentCode}</div>
+
+        <div class="va-cell">
+          <div class="va-name">${a.studentName}</div>
+          <div class="va-name-sub">${a.studentKana}</div>
+        </div>
+
+        <div class="va-cell">
+          <div class="va-company">${a.companyName}</div>
+          <div class="va-company-sub">${a.companyLocation}</div>
+        </div>
+
+        <div class="va-cell">${a.industryName}</div>
+
+        <div class="va-cell">
+          <span class="va-chip va-chip-ref">${a.referralTypeName}</span>
+        </div>
+
+        <div class="va-cell">
+          <span class="va-chip va-chip-stage">
+            <span class="va-dot"></span>
+            ${a.currentStageName}
+          </span>
+        </div>
+
+        <div class="va-cell">
+          <div class="mono">${a.currentEventAt}</div>
+          <div class="va-company-sub">${a.currentPlace}</div>
+        </div>
+
+        <div class="va-cell">
           <c:choose>
-            <c:when test="${a.hasHistory}">
-              <c:out value="${a.currentStageName}"/>
-              <c:if test="${a.currentFinal}"><span class="chip chip-final">最終</span></c:if>
+            <c:when test="${a.currentResultName == '内定'}">
+              <span class="va-chip va-chip-offer">内定</span>
             </c:when>
-            <c:otherwise><span style="color:#aaa;">未着手</span></c:otherwise>
+            <c:when test="${a.currentResultName == '不合格'}">
+              <span class="va-chip va-chip-fail">不合格</span>
+            </c:when>
+            <c:otherwise>
+              <span class="va-chip va-chip-neutral">${a.currentResultName}</span>
+            </c:otherwise>
           </c:choose>
-        </td>
-        <td>
-          <c:if test="${a.hasHistory}">
-            <c:choose>
-              <c:when test="${a.currentResultName == '不合格'}"><span class="chip chip-fail">不合格</span></c:when>
-              <c:when test="${a.currentResultName == '合格' && a.currentFinal}"><span class="chip chip-offer">内定</span></c:when>
-              <c:otherwise><c:out value="${a.currentResultName}"/></c:otherwise>
-            </c:choose>
+        </div>
+
+        <div class="va-cell mono">${a.currentResultDate}</div>
+
+        <div class="va-cell">
+          <c:if test="${not empty a.acceptDeadline}">
+            <span class="va-chip va-chip-deadline">${a.acceptDeadline}</span>
           </c:if>
-        </td>
-        <td>
-          <c:if test="${a.hasOffer && not empty a.acceptDeadline}">
-            <c:choose>
-              <c:when test="${empty a.offerAcceptanceName}">
-                <span class="chip chip-deadline"><c:out value="${a.acceptDeadline}"/></span>
-              </c:when>
-              <c:otherwise><c:out value="${a.acceptDeadline}"/></c:otherwise>
-            </c:choose>
-          </c:if>
-        </td>
-        <td>
-          <c:choose>
-            <c:when test="${a.closed}"><span class="chip">終了</span></c:when>
-            <c:otherwise><span class="chip chip-stage">進行中</span></c:otherwise>
-          </c:choose>
-        </td>
-      </tr>
+        </div>
+
+        <div class="va-cell menu">⋯</div>
+
+      </div>
     </c:forEach>
-    <c:if test="${empty applications}">
-      <tr><td colspan="7" style="text-align:center; color:#aaa; padding:24px;">該当する応募がありません。</td></tr>
-    </c:if>
-  </table>
+
+  </div>
+
 </div>
 
 <%@ include file="/WEB-INF/jsp/common/footer.jspf" %>
