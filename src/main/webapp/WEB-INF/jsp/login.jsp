@@ -6,8 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>JMS — ログイン</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/app.css?v=7d">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/components.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/pages/auth.css">
 </head>
 <body>
 	<div class="login-page">

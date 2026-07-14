@@ -10,7 +10,9 @@
 <head>
 <meta charset="UTF-8">
 <title>JMS — エラー（${sc}）</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/app.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/base.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/layout.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/components.css">
 </head>
 <body>
 <div class="app-main" style="max-width:640px;">
