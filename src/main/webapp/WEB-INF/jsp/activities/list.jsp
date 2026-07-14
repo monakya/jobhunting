@@ -7,8 +7,28 @@
 
 <c:if test="${param.msg == 'deleted'}"><div class="msg-info">削除しました。</div></c:if>
 
+<%-- フェーズ7E: メニューKPIからの遷移フィルタが有効な場合の表示 --%>
+<c:if test="${not empty eventDateLabel or deadlineWithin > 0}">
+  <div class="msg-info">
+    <c:if test="${not empty eventDateLabel}">
+      「<c:out value="${eventDateLabel}"/>」がある応募だけを表示しています。
+    </c:if>
+    <c:if test="${deadlineWithin > 0}">
+      承諾期限が ${deadlineWithin} 日以内で未回答の応募だけを表示しています（期限超過を含む）。
+    </c:if>
+    <a href="${pageContext.request.contextPath}/app/activities/list">絞り込みを解除</a>
+  </div>
+</c:if>
+
 <div class="card">
   <form method="get" action="${pageContext.request.contextPath}/app/activities/list" class="filter-bar">
+    <%-- KPIフィルタ有効中に検索しても絞り込みが外れないよう hidden で引き継ぐ --%>
+    <c:if test="${not empty eventDateParam}">
+      <input type="hidden" name="eventDate" value="<c:out value='${eventDateParam}'/>">
+    </c:if>
+    <c:if test="${deadlineWithin > 0}">
+      <input type="hidden" name="deadlineWithin" value="${deadlineWithin}">
+    </c:if>
     <select name="stageId">
       <option value="0">選考状況：すべて</option>
       <c:forEach var="s" items="${stages}">

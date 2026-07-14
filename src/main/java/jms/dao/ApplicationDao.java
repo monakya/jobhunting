@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +31,13 @@ public class ApplicationDao {
      * @param stageId  現在の選考状況での絞り込み（0=指定なし）
      * @param resultId 現在の結果での絞り込み（0=指定なし）
      * @param keyword  学生氏名・かな・企業名の部分一致
+     * @param eventDate 指定日に選考イベント（削除済み除く）がある応募に絞る（null=指定なし）。
+     *                  メニューKPI「本日/明日の予定」からの遷移用（フェーズ7E）
+     * @param deadlineWithin 承諾期限が今日から n 日以内で未回答（承諾・辞退以外）の内定を持つ
+     *                  応募に絞る。期限超過も含む（0=指定なし）。メニューKPI「承諾期限」からの遷移用
      */
-    public List<JobApplication> search(Integer scopeClassId, int stageId, int resultId, String keyword)
+    public List<JobApplication> search(Integer scopeClassId, int stageId, int resultId, String keyword,
+                                       LocalDate eventDate, int deadlineWithin)
             throws SQLException {
         StringBuilder sql = new StringBuilder(
             "SELECT a.application_id, a.student_no, s.name AS student_name, sc.class_name, " +
@@ -71,6 +77,24 @@ public class ApplicationDao {
             sql.append("AND (s.name LIKE ? OR s.name_kana LIKE ? OR co.company_name LIKE ?) ");
             String like = "%" + keyword.trim() + "%";
             params.add(like); params.add(like); params.add(like);
+        }
+        // フェーズ7E: メニューKPIからの遷移フィルタ
+        // 「その日にイベントがある」判定は最新履歴(cur)ではなく全履歴を見る必要があるため
+        // EXISTS サブクエリで書く（cur は最新1行しか持っていない。今日の説明会の後に
+        // 明日の面接を登録済みだと cur は明日の行になり、今日の分が漏れる）
+        if (eventDate != null) {
+            sql.append("AND EXISTS (SELECT 1 FROM application_history he " +
+                       "  WHERE he.application_id = a.application_id " +
+                       "    AND he.is_deleted = FALSE AND DATE(he.event_at) = ?) ");
+            params.add(java.sql.Date.valueOf(eventDate));
+        }
+        if (deadlineWithin > 0) {
+            // offer / offer_acceptance は既に LEFT JOIN 済み（o / oa）なので条件を足すだけ。
+            // 判定はメニューの fillDeadline と同じ: 未回答（NULL or 承諾・辞退以外）+ 期限超過も含む
+            sql.append("AND o.accept_deadline IS NOT NULL " +
+                       "AND o.accept_deadline <= DATE_ADD(CURDATE(), INTERVAL ? DAY) " +
+                       "AND (o.offer_acceptance_id IS NULL OR oa.offer_acceptance_name NOT IN ('承諾','辞退')) ");
+            params.add(deadlineWithin);
         }
         sql.append("ORDER BY a.is_closed, s.class_id, s.attendance_no, a.application_id");
 
