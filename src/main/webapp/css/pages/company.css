@@ -1,8 +1,160 @@
 /* =====================================================================
-   pages/company.css — 企業管理（10-13）専用
-   募集職種（recruitment）行の表示・編集スタイル
+   pages/company.css
+   企業管理（一覧・登録・変更・閲覧）
    ===================================================================== */
-.rec-line { font-size: 12px; line-height: 1.6; white-space: nowrap; }
-.rec-row { border: 1px dashed var(--line); border-radius: 4px; padding: 10px 12px; margin-bottom: 10px; }
-.rec-row-head { display: flex; gap: 10px; align-items: baseline; margin-bottom: 6px; }
-.rec-row-no { font: 700 11px/1 var(--font-head); color: var(--navy); }
+
+/* =====================================================
+   募集職種
+   ===================================================== */
+.rec-line {
+	font-size: 12px;
+	line-height: 1.6;
+	white-space: nowrap;
+}
+
+.rec-row {
+	border: 1px dashed var(--line);
+	border-radius: 4px;
+	padding: 10px 12px;
+	margin-bottom: 10px;
+}
+
+.rec-row-head {
+	display: flex;
+	gap: 10px;
+	align-items: baseline;
+	margin-bottom: 6px;
+}
+
+.rec-row-no {
+	font: 700 11px/1 var(--font-head);
+	color: var(--navy);
+}
+
+
+/* =====================================================
+   ページヘッダー
+   ===================================================== */
+
+.page-header {
+	display: flex !important;
+	justify-content: space-between !important;
+	align-items: center !important;
+}
+
+.page-category {
+	font-size: 13px;
+	color: var(--muted);
+	margin-bottom: 4px;
+}
+
+.page-title {
+	margin: 0;
+	font-size: 32px;
+	font-weight: 700;
+}
+
+.kpi-grid{
+    margin-top:10px;
+}
+
+/* =====================================================
+   検索条件
+   ===================================================== */
+
+.search-card {
+	padding: 5px 3px 12px;
+}
+
+.search-card .section-title {
+	margin-bottom: 8px;
+}
+
+.company-search {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 16px;
+	align-items: center;
+}
+
+.search-field {
+	display: flex;
+	align-items: center;
+	border: 1px solid var(--line);
+	border-radius: 4px;
+	background: #fff;
+	height: 42px;
+	padding: 0 12px;
+}
+
+.search-label {
+	color: var(--muted);
+	font-size: 12px;
+	margin-right: 8px;
+	white-space: nowrap;
+}
+
+.search-field select {
+	border: none;
+	background: transparent;
+	outline: none;
+	min-width: 120px;
+}
+
+.search-keyword input {
+	width: 320px;
+	height: 42px;
+}
+
+.search-actions {
+	margin-left: auto;
+}
+
+.search-actions .btn {
+	padding: 8px 24px;
+}
+
+
+/* =====================================================
+   一覧
+   ===================================================== */
+
+.card {
+	margin-bottom: 24px;
+}
+
+table.list {
+	width: 100%;
+	margin: 0;
+	border-collapse: collapse;
+}
+
+table.list th {
+	background: rgb(237, 238, 243);
+	font-weight: 700;
+}
+
+table.list td {
+	vertical-align: top;
+}
+
+table.list tr:hover {
+	background: #faf9f6;
+}
+
+
+/* =====================================================
+   一覧内表示
+   ===================================================== */
+
+.field-hint {
+	margin-top: 4px;
+}
+
+.mono {
+	font-family: var(--font-mono);
+}
+
+.company-list-card{
+    padding:0;
+}
